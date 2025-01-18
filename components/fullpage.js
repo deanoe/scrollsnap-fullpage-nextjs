@@ -3,14 +3,24 @@ import ReactFullpage from "@fullpage/react-fullpage";
 import bkgs from "../styles/bkgs.module.scss";
 import { clsx } from "clsx";
 
-export default function FullPage() {
+export default function FullPage({ scrollStatus }) {
+  const handleOnLeave = (origin, destination, direction) => {
+    const scrollData = {
+      origin: origin.index,
+      destination: destination.index,
+      direction: direction
+    };
+    return scrollStatus(scrollData);
+  };
   return (
     <ReactFullpage
       licenseKey=""
       scrollingSpeed={10}
+      scrollStatus={scrollStatus}
       navigation={true}
       navigationPosition="right"
       credits={false}
+      onLeave={handleOnLeave}
       render={({ state, fullpageApi }) => (
         <ReactFullpage.Wrapper>
           <div className={clsx("section", bkgs.bkg1)}>

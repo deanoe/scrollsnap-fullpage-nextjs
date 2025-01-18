@@ -1,0 +1,19 @@
+/* header.module.scss */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3rem;
+  background-color: red;
+  z-index: 100;
+  transition: transform 0.3s ease-in-out;
+}
+
+.header.sticky {
+  transform: translateY(0);
+}
+
+.header:not(.sticky) {
+  transform: translateY(-100%);
+}

@@ -1,7 +1,19 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import React, { useState } from "react";
+import Header from "../components/header.js";
 import FullPage from "@/components/fullpage.js";
-import FullpageScroll from "@/components/fullPageScroll";
+import Footer from "@/components/footer";
+
 export default function Home() {
-  return <FullPage />;
+  const [scrollStatus, setScrollStatus] = useState("");
+  const handleScrollStatus = scrollData => {
+    setScrollStatus(scrollData);
+  };
+  return (
+    <>
+      <Header scrollStatus={scrollStatus} />
+      <FullPage scrollStatus={handleScrollStatus} />
+      <Footer />
+    </>
+  );
 }
