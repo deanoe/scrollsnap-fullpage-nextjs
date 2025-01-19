@@ -1,0 +1,23 @@
+.myNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: gray;
+  padding-top: 3rem;
+  transition-delay: 100ms;
+  transition-duration: 300ms;
+  overflow: hidden;
+  z-index: 1000;
+  .isOpen {
+    opacity: 100;
+    transform: translateY(0);
+  }
+  &:not(.isOpen) {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}

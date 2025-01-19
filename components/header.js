@@ -4,18 +4,37 @@ import styles from "../styles/siteHeader.module.scss";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
 
-const Header = props => {
-  let scrollDirection = props.scrollStatus.direction;
+const Header = ({ scrollStatus, navbarOpen, setNavbarOpen }) => {
+  const handleNavClick = () => {
+    setNavbarOpen(!navbarOpen);
+  };
+  let scrollDirection = scrollStatus.direction;
+  let navOpen = "";
   let isSticky = "";
-  if (scrollDirection == "down") {
+  console.log("nav is open " + navbarOpen);
+  if (navbarOpen == true) {
+    navOpen = styles.isOpen;
     isSticky = styles.sticky;
   } else {
-    isSticky = "";
+    navOpen = "";
+    if (scrollDirection == "down") {
+      isSticky = styles.sticky;
+    } else {
+      isSticky = "";
+    }
   }
-
   return (
     <header id="siteHeader" className={clsx(styles.header, isSticky)}>
-      {/* Your header content here */}
+      <div className={styles.logo}>
+        <h1 className="text-2xl font-bold my-0">Logo</h1>
+      </div>
+      <button onClick={handleNavClick}>
+        <div className={styles.icon}>
+          <span className={navOpen}></span>
+          {/* <span className={isNavOpen}></span>
+          <span className={isNavOpen}></span> */}
+        </div>
+      </button>
     </header>
   );
 };
